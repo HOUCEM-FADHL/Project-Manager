@@ -14,16 +14,6 @@ module.exports = {
             res.status(500).json(err);
         }
     },
-    // getAllClients: async (req, res) => {
-    //     const id = req.params.userId;
-    //     try{
-    //         const Clients = await Client.find({userId: id}).populate("userId");
-    //         res.status(200).json(clients);
-    //     }
-    //     catch(err){
-    //         res.status(500).json(err);
-    //     }
-    // },
     getAllClients: (req, res) => {
         Client.find()
         .then((clients) => res.json(clients))

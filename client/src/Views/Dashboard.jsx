@@ -1,7 +1,3 @@
-// const sortedClients = res.data.sort(
-//   (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-// );
-// setClients(sortedClients);
 import React, { useEffect, useState } from "react";
 import NavComponent from "../Components/NavComponent";
 import axios from "axios";
@@ -12,13 +8,20 @@ import { BiEdit } from "react-icons/bi";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { CiNoWaitingSign } from "react-icons/ci";
 
+// Functional component for the dashboard page
 const Dashboard = () => {
+  // State variables for managing client data and completion status
   const [clients, setClients] = useState([]);
   const [isCompleted, setIsCompleted] = useState(false);
   const [isWaiting, setIswaiting] = useState(false);
+
+  // Hook for programmatic navigation
   const navigate = useNavigate();
+  
+  // Get user ID from local storage
   const idx = window.localStorage.getItem("userId");
 
+  // Fetch client data from the server on component mount
   useEffect(() => {
     axios
       .get(`http://localhost:8000/api/clients`, { withCredentials: true })
@@ -29,6 +32,8 @@ const Dashboard = () => {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  // Function to toggle completion status and update color
   const toggleColor = (e, id) => {
     e.preventDefault();
     console.log("id", id);
@@ -51,13 +56,13 @@ const Dashboard = () => {
             client._id === res.data._id ? res.data : client
           )
         );
-        // setError({});
       })
       .catch((err) => {
         console.log(err.response.data.errors);
-        // setError(err.response.data.errors);
       });
   };
+
+  // Event handlers for completion and waiting icons
   const handleCheckmarkClick = (e, id) => {
     e.preventDefault();
     setIsCompleted(!isCompleted);
@@ -72,6 +77,7 @@ const Dashboard = () => {
     toggleColor(e, id);
   };
 
+  // Function to delete a client
   const deleteClient = (id) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this Customer?"
@@ -89,6 +95,8 @@ const Dashboard = () => {
         .catch((err) => console.log(err));
     }
   };
+
+  // Function to sort clients based on selected option
   const Sort = (e) => {
     e.preventDefault();
     const newClients = [...clients]; // Create a new array to avoid modifying the original array
@@ -103,16 +111,20 @@ const Dashboard = () => {
     }
     setClients([...newClients]); // Update the state with the new sorted array
   };
+
+  // JSX structure for the dashboard page
   return (
     <div>
-      {idx?(
+      {idx ? (
         <div>
+          {/* Render navigation component for logged-in users */}
           <NavComponent home={false} />
           <div className="container mx-auto w-auto">
             <h2 className="text-center">Dashboard</h2>
             <Container>
               <Row>
                 <Col>
+                  {/* Button to navigate to the create client page */}
                   <Button
                     variant="warning"
                     className="add-button mb-2"
@@ -122,6 +134,7 @@ const Dashboard = () => {
                   </Button>
                 </Col>
                 <Col xs={3}>
+                  {/* Dropdown for sorting clients */}
                   <Form.Select onChange={Sort}>
                     <option value="createdDate">Sorted by Created Date</option>
                     <option value="maintDate">
@@ -134,9 +147,11 @@ const Dashboard = () => {
               </Row>
             </Container>
             <div style={{ overflowX: "auto", height: "400px" }}>
+              {/* Table displaying client information */}
               <Table bordered striped>
                 <thead style={{ position: "sticky", top: 0, zIndex: 1 }}>
                   <tr className="align-middle">
+                    {/* Table header columns */}
                     <th>Company Installation</th>
                     <th>Phone</th>
                     <th>Name</th>
@@ -151,6 +166,7 @@ const Dashboard = () => {
                   </tr>
                 </thead>
                 <tbody>
+                  {/* Table body with client data */}
                   {clients.map((client) => (
                     <tr key={client._id}>
                       <td
@@ -168,6 +184,7 @@ const Dashboard = () => {
                         {client.phone1}/{client.phone2}
                       </td>
                       <td>
+                        {/* Link to view client details */}
                         <Link to={`/customer/${client._id}`}>
                           {client.name}
                         </Link>
@@ -180,6 +197,7 @@ const Dashboard = () => {
                       <td>{client.maintPrice}</td>
                       <td>{client.comment}</td>
                       <td className="justify-content-center">
+                        {/* Icons for actions */}
                         <div className="d-flex gap-2">
                           <IoMdCheckmarkCircleOutline
                             onClick={(e) => handleCheckmarkClick(e, client._id)}
@@ -211,10 +229,10 @@ const Dashboard = () => {
               </Table>
             </div>
           </div>
-       </div>
-      ):
-      (
+        </div>
+      ) : (
         <div>
+          {/* Render navigation component for non-logged-in users */}
           <NavComponent home={true} />
           <p className="text-center">
             You are not logged in. <Link to="/">Login here</Link>

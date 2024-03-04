@@ -12,6 +12,7 @@ import Todo from "./Views/Todo";
 import Performances from "./Views/Performances";
 import About from "./Views/About";
 import Contact from "./Views/Contact";
+
 function App() {
   return (
     <div style={{ backgroundImage: `url(${water3})` }} className="min-vh-100">

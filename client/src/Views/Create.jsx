@@ -12,7 +12,9 @@ import {
   Button,
 } from "react-bootstrap";
 
+// Functional component for creating a new customer sheet
 const Create = () => {
+    // State variables for form input fields
   const [name, setName] = useState("");
   const [phone1, setPhone1] = useState(0);
   const [phone2, setPhone2] = useState(0);
@@ -39,13 +41,16 @@ const Create = () => {
   const [membrane, setMembrane] = useState(false);
   const [tds, setTds] = useState(false);
   const [installed, setInstalled] = useState(false);
+    // State variable for error handling
   const [error, setError] = useState({});
+    // Hook for programmatic navigation
   const navigate = useNavigate();
+    // Get user ID from local storage
   const idx = window.localStorage.getItem("userId");
-
+  // Form submission handler
   const onSubmitHandler = (e) => {
     e.preventDefault();
-
+    // Send a POST request to create a new client sheet
     axios
       .post(
         "http://localhost:8000/api/createClient",
@@ -90,17 +95,21 @@ const Create = () => {
         setError(err.response.data.errors);
       });
   };
-
+  // JSX structure for the create page
   return (
     <div>
+            {/* Conditional rendering based on user login status */}
       {idx ? (
         <div>
           <NavComponent home={false} />
           <h1 className="text-center mb-5">New Customer Sheet</h1>
           <form onSubmit={onSubmitHandler} className="mx-auto w-75">
+                        {/* Form layout using Bootstrap components */}
             <Container>
               <Row>
+                                {/* General Information section */}
                 <Col xs={6}>
+                                {/* ... (form fields and error handling) */}
                   <fieldset>
                     <legend>General Informations</legend>
                     <Row className="mb-3">
@@ -212,9 +221,11 @@ const Create = () => {
                   </fieldset>
                 </Col>
                 <Col xs={1}></Col>
+                                {/* Technical Information section */}
                 <Col>
                   <fieldset>
                     <legend>Technical Informations</legend>
+                          {/*... (form fields and error handling) */}
                     <Row className="mb-3">
                       <Col>
                         <Form.Select
@@ -367,6 +378,7 @@ const Create = () => {
                   </fieldset>
                 </Col>
               </Row>
+                            {/* Submit button */}
               <Row className="mt-3 mx-auto w-25">
                 <Button variant="primary" type="submit" className="mb-3">
                   Create Sheet
@@ -377,6 +389,7 @@ const Create = () => {
         </div>
       ) : (
         <div>
+                    {/* Render login prompt for users not logged in */}
           <NavComponent home={true} />
           <p className="text-center">
             You are not logged in. <Link to="/">Login here</Link>

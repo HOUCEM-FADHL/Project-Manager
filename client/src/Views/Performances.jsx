@@ -6,12 +6,14 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Performances = () => {
+  // State for start and end dates, maintenance data, installation data, and user ID
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
   const [maintenanceData, setMaintenanceData] = useState([]);
   const [installationData, setInstallationData] = useState([]);
   const idx = window.localStorage.getItem("userId");
 
+  // Fetch client data based on selected date range and calculate maintenance and installation revenue
   useEffect(() => {
     axios
       .get(`http://localhost:8000/api/clients`, { withCredentials: true })
@@ -24,6 +26,7 @@ const Performances = () => {
           (a, b) => new Date(a.maintDate) - new Date(b.maintDate)
         );
 
+        // Calculate maintenance revenue per date
         const maintenanceMap = new Map();
         sortedMaintenanceData.forEach((client) => {
           const dateKey = new Date(client.maintDate).toLocaleDateString();
@@ -52,6 +55,7 @@ const Performances = () => {
           (a, b) => new Date(a.instDate) - new Date(b.instDate)
         );
 
+        // Calculate installation revenue per date
         const installationMap = new Map();
         sortedInstallationData.forEach((client) => {
           const dateKey = new Date(client.instDate).toLocaleDateString();
@@ -78,12 +82,14 @@ const Performances = () => {
       .catch((err) => console.log(err));
   }, [start, end]);
 
+  // References and instances for maintenance and installation charts
   const maintenanceChartRef = useRef(null);
   const maintenanceChartInstance = useRef(null);
 
   const installationChartRef = useRef(null);
   const installationChartInstance = useRef(null);
 
+  // Effect to create and update maintenance and installation charts
   useEffect(() => {
     // Maintenance Chart
     if (maintenanceChartInstance.current) {
@@ -144,6 +150,7 @@ const Performances = () => {
     };
   }, [maintenanceData, installationData]);
 
+  // JSX structure for the performances page
   return (
     <div>
       {idx ? (
@@ -157,6 +164,7 @@ const Performances = () => {
                   <Form.Label>Select Period:</Form.Label>
                 </Col>
                 <Col>
+                  {/* Input for selecting the start date */}
                   <Form.Control
                     type="date"
                     value={start}
@@ -164,6 +172,7 @@ const Performances = () => {
                   />
                 </Col>
                 <Col>
+                  {/* Input for selecting the end date */}
                   <Form.Control
                     type="date"
                     value={end}
@@ -172,6 +181,7 @@ const Performances = () => {
                 </Col>
               </Row>
             </Container>
+            {/* Display maintenance and installation charts */}
             <div className="d-flex justify-content-center gap-3">
               <div style={{ width: "600px", height: "400px" }} className="mb-3">
                 <canvas
@@ -201,6 +211,7 @@ const Performances = () => {
 };
 
 export default Performances;
+
 
 // import React, { useState, useEffect, useRef } from "react";
 // import NavComponent from "../Components/NavComponent";

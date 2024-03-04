@@ -9,6 +9,7 @@ import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 import { CiNoWaitingSign } from "react-icons/ci";
 
 const Todo = () => {
+    // State for managing client data and filtering
   const [clients, setClients] = useState([]);
   const [isCompleted, setIsCompleted] = useState(false);
   const [isWaiting, setIswaiting] = useState(false);
@@ -16,17 +17,18 @@ const Todo = () => {
   const [end, setEnd] = useState("");
   const navigate = useNavigate();
   const idx = window.localStorage.getItem("userId");
+    // Fetch client data based on selected date range
   useEffect(() => {
     axios
       .get(`http://localhost:8000/api/clients`, { withCredentials: true })
       .then((res) => {
         console.log("res List", res);
         console.log("res.data List", res.data);
-        // setClients(res.data);
-
+                // Sort the clients based on maintenance date
         const sortedClients = res.data.sort(
           (a, b) => new Date(a.maintDate) - new Date(b.maintDate)
         );
+                // Filter clients based on selected date range
         setClients(
           sortedClients.filter(
             (client) => client.maintDate >= start && client.maintDate <= end
@@ -35,6 +37,7 @@ const Todo = () => {
       })
       .catch((err) => console.log(err));
   }, [start, end]);
+    // Toggle color and update completion status of a client
   const toggleColor = (e, id) => {
     e.preventDefault();
     console.log("id", id);
@@ -64,19 +67,21 @@ const Todo = () => {
         // setError(err.response.data.errors);
       });
   };
+    // Handle checkmark click event
   const handleCheckmarkClick = (e, id) => {
     e.preventDefault();
     setIsCompleted(!isCompleted);
     setIswaiting(false);
     toggleColor(e, id);
   };
-
+  // Handle no waiting click event
   const handleNoWaitingClick = (e, id) => {
     e.preventDefault();
     setIswaiting(!isWaiting);
     setIsCompleted(false);
     toggleColor(e, id);
   };
+    // Delete a client
   const deleteClient = (id) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this Customer?"
@@ -102,6 +107,7 @@ const Todo = () => {
           <div className="container mx-auto w-auto">
             <h1 className="text-center mb-5">Todo</h1>
             <Container className="mb-5">
+                                        {/* Date range selection form */}
               <Row>
                 <Col>
                   <Form.Label>Select Period:</Form.Label>
@@ -122,6 +128,7 @@ const Todo = () => {
                 </Col>
               </Row>
             </Container>
+                                      {/* Table displaying clients */}
             <div style={{ overflowX: "auto", height: "400px" }}>
               <Table bordered striped>
                 <thead style={{ position: "sticky", top: 0, zIndex: 1 }}>
@@ -168,6 +175,7 @@ const Todo = () => {
                       <td>{client.instPrice}</td>
                       <td>{client.maintPrice}</td>
                       <td>{client.comment}</td>
+                                              {/* Actions column */}
                       <td className="justify-content-center">
                         <div className="d-flex gap-2">
                           <IoMdCheckmarkCircleOutline
