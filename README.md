@@ -1,3 +1,5 @@
+[Project Manager README.pdf](https://github.com/HOUCEM-FADHL/Project-Manager/files/14455395/Project.Manager.README.pdf)
+
 Overview:
 The "Project Manager" application is designed to facilitate project management tasks, allowing users to organize and manage information related to clients, projects, and performance metrics.
 Features:
@@ -55,4 +57,3 @@ Contact: For any questions, feedback, or issues, feel free to reach out:
  •Email: Houcem.Fadhl@gmail.com
  •GitHub: HOUCEM-FADHL
 License: This project is licensed under the MIT License.
-[Project Manager README.pdf](https://github.com/HOUCEM-FADHL/Project-Manager/files/14455395/Project.Manager.README.pdf)
