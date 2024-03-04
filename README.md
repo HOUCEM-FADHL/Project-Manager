@@ -2,6 +2,7 @@
 
 Overview:
 The "Project Manager" application is designed to facilitate project management tasks, allowing users to organize and manage information related to clients, projects, and performance metrics.
+
 Features:
 1.Client Management:
  •View and manage client information.
