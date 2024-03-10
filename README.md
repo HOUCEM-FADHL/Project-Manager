@@ -1,113 +1,102 @@
-Overview:
+# Project Manager
+
+## Overview
 
 The "Project Manager" application is designed to facilitate project management tasks, allowing users to organize and manage information related to clients, projects, and performance metrics.
 
-Features:
+## Features
 
-1.Client Management:
+### 1. Client Management
 
- •View and manage client information.
- 
- •Detailed client sheets with contact details, location, installation, and maintenance details.
- 
- •Track consumables and spare parts associated with each client.
- 
-2.To-Do List:
+- View and manage client information.
+- Detailed client sheets with contact details, location, installation, and maintenance details.
+- Track consumables and spare parts associated with each client.
 
- •Maintain a to-do list with a focus on project tasks.
+### 2. To-Do List
 
- •Mark tasks as completed or waiting, with date tracking.
+- Maintain a to-do list with a focus on project tasks.
+- Mark tasks as completed or waiting, with date tracking.
 
-3.Performance Analytics:
+### 3. Performance Analytics
 
- •Visualize project performance over time.
- 
- •Graphical representation of maintenance and installation revenues.
- 
- •Period selection to analyze performance metrics.
+- Visualize project performance over time.
+- Graphical representation of maintenance and installation revenues.
+- Period selection to analyze performance metrics.
 
-4.User Authentication:
+### 4. User Authentication
 
- •Secure user authentication with login and registration functionalities.
- 
- •Implementation of user sessions using JSON Web Tokens (JWT) for security.
+- Secure user authentication with login and registration functionalities.
+- Implementation of user sessions using JSON Web Tokens (JWT) for security.
 
-5.Responsive Design:
+### 5. Responsive Design
 
- •Ensure a responsive design for seamless user experience across devices.
+- Ensure a responsive design for a seamless user experience across devices.
 
-6.Contact Information:
+### 6. Contact Information
 
- •Contact page with relevant information for user inquiries and feedback.
+- Contact page with relevant information for user inquiries and feedback.
 
-7.About Us:
+### 7. About Us
 
- •Learn more about the team behind the "Project Manager" application.
+- Learn more about the team behind the "Project Manager" application.
 
-Technologies Used:
+## Technologies Used
 
- Frontend:
- 
- •React.js for building the user interface.
- 
- •React Router for client-side navigation.
- 
- •React Bootstrap for styling components.
- 
- Backend:
- 
- •Node.js and Express for the server.
- 
- •MongoDB as the database for storing project and client data.
- 
- •Authentication using JSON Web Tokens (JWT).
+### Frontend
 
-Getting Started:
+- React.js for building the user interface.
+- React Router for client-side navigation.
+- React Bootstrap for styling components.
 
-1.Installation:
+### Backend
 
- •Clone the repository: git clone https://github.com/HOUCEM-FADHL/Project-Manager.git
- 
- •Navigate to the project folder: cd project-manager
- 
- •Install dependencies: npm install
+- Node.js and Express for the server.
+- MongoDB as the database for storing project and client data.
+- Authentication using JSON Web Tokens (JWT).
 
-2.Configuration:
+## Getting Started
 
- •Set up a MongoDB database and update the connection string in the server configuration.
+### 1. Installation
 
-3.Run the Application:
+- Clone the repository: `git clone https://github.com/HOUCEM-FADHL/Project-Manager.git`
+- Navigate to the project folder: `cd project-manager`
+- Install dependencies: `npm install`
 
- •Start the server: npm start (or use a tool like Nodemon for development)
- 
- •Start the frontend: cd client && npm start
- 
- •Access the application at http://localhost:3000
+### 2. Configuration
 
-4.User Authentication:
+- Set up a MongoDB database and update the connection string in the server configuration.
 
- •Register a new account or log in with existing credentials.
+### 3. Run the Application
 
-5.Explore and Contribute:
+- Start the server: `npm start` (or use a tool like Nodemon for development)
+- Start the frontend: `cd client && npm start`
+- Access the application at http://localhost:3000
 
- •Explore the features, contribute to the project, and provide feedback.
+### 4. User Authentication
 
-Contributing: Contributions are welcome! If you'd like to contribute to the "Project Manager" application, please follow these steps:
+- Register a new account or log in with existing credentials.
 
-1.Fork the repository.
+### 5. Explore and Contribute
 
-2.Create a new branch: git checkout -b feature/your-feature
+- Explore the features, contribute to the project, and provide feedback.
 
-3.Commit your changes: git commit -m 'Add your feature'
+## Contributing
 
-4.Push to the branch: git push origin feature/your-feature
+Contributions are welcome! If you'd like to contribute to the "Project Manager" application, please follow these steps:
 
-5.Open a pull request.
+1. Fork the repository.
+2. Create a new branch: `git checkout -b feature/your-feature`
+3. Commit your changes: `git commit -m 'Add your feature'`
+4. Push to the branch: `git push origin feature/your-feature`
+5. Open a pull request.
 
-Contact: For any questions, feedback, or issues, feel free to reach out:
+## Contact
 
- •Email: Houcem.Fadhl@gmail.com
- 
- •GitHub: HOUCEM-FADHL
+For any questions, feedback, or issues, feel free to reach out:
 
-License: This project is licensed under the MIT License.
+- Email: [Houcem.Fadhl@gmail.com](mailto:Houcem.Fadhl@gmail.com)
+- GitHub: [HOUCEM-FADHL](https://github.com/HOUCEM-FADHL)
+
+## License
+
+This project is licensed under the MIT License.
